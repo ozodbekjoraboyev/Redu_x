@@ -1,6 +1,6 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-const counterSlice = createSlice({
+export const counterSlice = createSlice({
   name: "counter",
   initialState: {
     value: 0,
@@ -25,19 +25,14 @@ const counterSlice = createSlice({
       state.todoss = state.todoss.filter((todo) => todo.id !== payload);
     },
     EditTodos: (state, { payload }) => {
-      const index = state.todoss.findIndex((todo) => todo.id === payload.id);
+      const index = state.todoss.find((todo) => todo.id === payload.id);
+      console.log(payload);
 
-      if (index !== -1) {
-        state.todoss[index].name = payload.name;
+      if (index) {
+        index.name = payload.name;
       }
     },
   },
 });
 
-export const store = configureStore({
-  reducer: { counter: counterSlice.reducer },
-});
 export const { addTodos, deleteTodos, EditTodos } = counterSlice.actions;
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;

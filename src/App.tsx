@@ -1,18 +1,18 @@
 import { Form, Input, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodos, deleteTodos } from "./srs/conterSlike"; // store.ts faylingizdan import
+import { addTodos, deleteTodos } from "./srs/conterSlike"; 
 import { RootState } from "./srs/conterSlike";
 import { CheckOutlined, DeleteOutlined, FormOutlined } from "@ant-design/icons";
 
 const App = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state: RootState) => state.counter.todoss); // Redux’dan todosni olish
+  const todos = useSelector((state: RootState) => state.counter.todoss);
   const [form] = Form.useForm();
 
   const onFinish = (values: { text: string }) => {
     if (values.text) {
-      dispatch(addTodos(values.text)); // Input’dagi matnni Redux’ga qo‘shish
-      form.resetFields(); // Formani tozalash
+      dispatch(addTodos(values.text));
+      form.resetFields(); 
     }
   };
 
